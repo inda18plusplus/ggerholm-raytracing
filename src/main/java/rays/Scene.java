@@ -1,6 +1,5 @@
 package rays;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -36,8 +35,6 @@ public class Scene {
    * @throws IOException If an error occurred while writing the image to the output file.
    */
   public void renderToFile(int width, int height, String fileName) throws IOException {
-    Vector3[] image = new Vector3[width * height];
-
     double invWidth = 1F / width;
     double invHeight = 1F / height;
     double fov = 30;
@@ -51,15 +48,8 @@ public class Scene {
         double rayX = (2 * ((x + 0.5F) * invWidth) - 1) * angle * aspectRatio;
         double rayY = (1 - 2 * (y + 0.5F) * invHeight) * angle;
         Vector3 rayDirection = Vector3.of(rayX, rayY, -1).normalize();
-
-        int i = x + y * width;
-        image[i] = RayTracer.trace(Vector3.ZERO, rayDirection, shapes, 0);
-
-        int r = (int) (Math.min(1, image[i].getX()) * 255);
-        int g = (int) (Math.min(1, image[i].getY()) * 255);
-        int b = (int) (Math.min(1, image[i].getZ()) * 255);
-        int rgb = new Color(r, g, b).getRGB();
-        bufferedImage.setRGB(x, y, rgb);
+        Vector3 color = RayTracer.trace(Vector3.ZERO, rayDirection, shapes, 0);
+        bufferedImage.setRGB(x, y, color.as255Rgb());
       }
     }
 

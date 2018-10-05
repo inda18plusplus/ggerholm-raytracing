@@ -88,4 +88,18 @@ public class Vector3 {
     return new Vector3(v, v, v);
   }
 
+  /**
+   * Returns the ARGB value. X corresponds to red, Y to green and Z to blue. The alpha is constant.
+   *
+   * @return The ARGB made from the vectors coordinates.
+   */
+  public int as255Rgb() {
+    int red = (int) (Math.min(1, locX) * 255);
+    int green = (int) (Math.min(1, locY) * 255);
+    int blue = (int) (Math.min(1, locZ) * 255);
+    int alpha = 255;
+
+    return (alpha << 24) | (red << 16) | (green << 8) | blue;
+  }
+
 }
