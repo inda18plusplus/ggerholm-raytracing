@@ -27,6 +27,14 @@ public class Scene {
     shapes.add(light);
   }
 
+  /**
+   * Renders the current scene to the specified file.
+   *
+   * @param width The width in pixels of the rendered scene.
+   * @param height The height in pixels of the rendered scene.
+   * @param fileName The output filename, including extension.
+   * @throws IOException If an error occurred while writing the image to the output file.
+   */
   public void renderToFile(int width, int height, String fileName) throws IOException {
     Vector3[] image = new Vector3[width * height];
 
@@ -47,9 +55,9 @@ public class Scene {
         int i = x + y * width;
         image[i] = RayTracer.trace(Vector3.ZERO, rayDirection, shapes, 0);
 
-        int r = (int) (Math.min(1, image[i].x()) * 255);
-        int g = (int) (Math.min(1, image[i].y()) * 255);
-        int b = (int) (Math.min(1, image[i].z()) * 255);
+        int r = (int) (Math.min(1, image[i].getX()) * 255);
+        int g = (int) (Math.min(1, image[i].getY()) * 255);
+        int b = (int) (Math.min(1, image[i].getZ()) * 255);
         int rgb = new Color(r, g, b).getRGB();
         bufferedImage.setRGB(x, y, rgb);
       }

@@ -79,7 +79,7 @@ class RayTracer {
       for (int i = 0; i < shapes.size(); ++i) {
         Shape s = shapes.get(i);
 
-        if (s.emissionColor().x() > 0) {
+        if (s.emissionColor().getX() > 0) {
           double transmission = 1;
           Vector3 lightDirection = s.center().subtract(intersectHit).normalize();
 

@@ -6,6 +6,16 @@ public class Sphere extends Shape {
 
   private double radiusSqr;
 
+  /**
+   * Creates a sphere with the provided attributes.
+   *
+   * @param center The center of the sphere.
+   * @param radius The radius of the sphere.
+   * @param surfaceColor The color of the sphere.
+   * @param reflectivity The reflectivity of the sphere.
+   * @param transparency The transparency of the sphere.
+   * @param emissionColor The emission color (i.e for lights).
+   */
   public Sphere(Vector3 center, double radius, Vector3 surfaceColor, double reflectivity,
       double transparency, Vector3 emissionColor) {
     super(center, surfaceColor, reflectivity, transparency, emissionColor);
